@@ -8,3 +8,7 @@ tests/e2e/shots
 .env
 .env.*
 !.env.example
+
+# Python generated files
+__pycache__/
+*.py[cod]
