@@ -1,0 +1,22 @@
+{
+  "target": "REHEARSAL — local Supabase API stand-in + local PostgreSQL, NOT Supabase",
+  "at": "2026-09-28T18:16:41.140Z",
+  "results": [
+    {"section":"2. Database schema (ops_schema_audit)","check":"tables without rls","expected":"none","got":"[]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"definer functions without search path","expected":"none","got":"[]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"views not security invoker","expected":"none","got":"[]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"foreign keys without index","expected":"none","got":"[]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"api role dangerous grants","expected":"none","got":"[]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"write functions callable by anon","expected":"none","got":"[]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"restore unsafe functions","expected":"none","got":"[]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"SECURITY DEFINER functions anon can execute","expected":"only the read-only RLS helpers (can_modify_job, content_is_public, current_staff_role, has_permission, is_staff)","got":"[\"can_modify_job\",\"content_is_public\",\"current_staff_role\",\"has_permission\",\"is_staff\"]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"RLS tables with no policy","expected":"[\"rate_limits\"] (deny-all by design)","got":"[\"rate_limits\"]","status":"PASS"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"PostgreSQL server version","expected":"—","got":"16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)","status":"INFO"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"Extensions","expected":"—","got":"{\"citext\":\"public\",\"pg_trgm\":\"public\",\"plpgsql\":\"pg_catalog\",\"pgcrypto\":\"public\"}","status":"INFO"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"Object counts","expected":"—","got":"{\"states\":36,\"tables\":58,\"indexes\":217,\"policies\":127,\"triggers\":88,\"districts\":0,\"functions\":86,\"foreign_keys\":98,\"role_permissions\":222,\"workflow_transitions\":84}","status":"INFO"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"Applied migrations recorded by the Supabase CLI","expected":"24 rows","got":"no supabase_migrations table — applied outside `supabase db push`?","status":"INFO"},
+    {"section":"2. Database schema (ops_schema_audit)","check":"Local baseline NOT written","expected":"—","got":"this is a plain --rehearsal run; pass --write-baseline on a clean run to (re)establish docs/staging/local-schema-baseline.json","status":"INFO"},
+    {"section":"Cleanup","check":"Fixtures and throw-away accounts removed","expected":"nothing left","got":"jobs left: 0","status":"PASS"},
+    {"section":"Cleanup","check":"Kept on purpose","expected":"—","got":"audit_logs rows written by this run (append-only) and the cron_runs rows of the lock check","status":"INFO"}
+  ]
+}

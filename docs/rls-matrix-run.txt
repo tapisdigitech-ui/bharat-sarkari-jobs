@@ -1,0 +1,207 @@
+RLS matrix — local PostgreSQL (all migrations in supabase/migrations), NOT real Supabase. ✓ = database allowed, · = database refused, ✗ = MISMATCH with the permission model
+table                  op     case                                          anon  user   mod  edit   seo    cm admin super
+jobs                   SELECT published                                        ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+jobs                   SELECT expired (opens by URL)                           ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+jobs                   SELECT draft                                            ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+jobs                   SELECT review                                           ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+jobs                   SELECT unpublished                                      ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+jobs                   SELECT archived                                         ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+jobs                   INSERT new draft                                        ·     ·     ·     ✓     ·     ✓     ✓     ✓
+jobs                   INSERT new row already published                        ·     ·     ·     ·     ·     ·     ·     ·
+jobs                   UPDATE edit a draft                                     ·     ·     ·     ✓     ·     ✓     ✓     ✓
+jobs                   UPDATE edit a published record                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+jobs                   UPDATE publish (review → published)                     ·     ·     ·     ✓     ·     ·     ✓     ✓
+jobs                   UPDATE publish skipping review (draft → published)      ·     ·     ·     ·     ·     ·     ·     ·
+jobs                   UPDATE unpublish (published → draft)                    ·     ·     ✓     ✓     ·     ·     ✓     ✓
+jobs                   UPDATE archive (expired → archived)                     ·     ·     ✓     ✓     ·     ·     ✓     ✓
+jobs                   DELETE a draft                                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+jobs                   DELETE a published record                               ·     ·     ·     ·     ·     ·     ·     ·
+recruitments           SELECT published                                        ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+recruitments           SELECT expired (opens by URL)                           ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+recruitments           SELECT draft                                            ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+recruitments           SELECT review                                           ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+recruitments           SELECT unpublished                                      ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+recruitments           SELECT archived                                         ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+recruitments           INSERT new draft                                        ·     ·     ·     ✓     ·     ✓     ✓     ✓
+recruitments           INSERT new row already published                        ·     ·     ·     ·     ·     ·     ·     ·
+recruitments           UPDATE edit a draft                                     ·     ·     ·     ✓     ·     ✓     ✓     ✓
+recruitments           UPDATE edit a published record                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+recruitments           UPDATE publish (review → published)                     ·     ·     ·     ✓     ·     ·     ✓     ✓
+recruitments           UPDATE publish skipping review (draft → published)      ·     ·     ·     ·     ·     ·     ·     ·
+recruitments           UPDATE unpublish (published → draft)                    ·     ·     ✓     ✓     ·     ·     ✓     ✓
+recruitments           UPDATE archive (expired → archived)                     ·     ·     ✓     ✓     ·     ·     ✓     ✓
+recruitments           DELETE a draft                                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+recruitments           DELETE a published record                               ·     ·     ·     ·     ·     ·     ·     ·
+exams                  SELECT published                                        ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+exams                  SELECT expired (opens by URL)                           ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+exams                  SELECT draft                                            ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+exams                  SELECT review                                           ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+exams                  SELECT unpublished                                      ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+exams                  SELECT archived                                         ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+exams                  INSERT new draft                                        ·     ·     ·     ✓     ·     ✓     ✓     ✓
+exams                  INSERT new row already published                        ·     ·     ·     ·     ·     ·     ·     ·
+exams                  UPDATE edit a draft                                     ·     ·     ·     ✓     ·     ✓     ✓     ✓
+exams                  UPDATE edit a published record                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+exams                  UPDATE publish (review → published)                     ·     ·     ·     ✓     ·     ·     ✓     ✓
+exams                  UPDATE publish skipping review (draft → published)      ·     ·     ·     ·     ·     ·     ·     ·
+exams                  UPDATE unpublish (published → draft)                    ·     ·     ✓     ✓     ·     ·     ✓     ✓
+exams                  UPDATE archive (expired → archived)                     ·     ·     ✓     ✓     ·     ·     ✓     ✓
+exams                  DELETE a draft                                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+exams                  DELETE a published record                               ·     ·     ·     ·     ·     ·     ·     ·
+admit_cards            SELECT published                                        ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+admit_cards            SELECT expired (opens by URL)                           ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+admit_cards            SELECT draft                                            ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+admit_cards            SELECT review                                           ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+admit_cards            SELECT unpublished                                      ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+admit_cards            SELECT archived                                         ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+admit_cards            INSERT new draft                                        ·     ·     ·     ✓     ·     ✓     ✓     ✓
+admit_cards            INSERT new row already published                        ·     ·     ·     ·     ·     ·     ·     ·
+admit_cards            UPDATE edit a draft                                     ·     ·     ·     ✓     ·     ✓     ✓     ✓
+admit_cards            UPDATE edit a published record                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+admit_cards            UPDATE publish (review → published)                     ·     ·     ·     ✓     ·     ·     ✓     ✓
+admit_cards            UPDATE publish skipping review (draft → published)      ·     ·     ·     ·     ·     ·     ·     ·
+admit_cards            UPDATE unpublish (published → draft)                    ·     ·     ✓     ✓     ·     ·     ✓     ✓
+admit_cards            UPDATE archive (expired → archived)                     ·     ·     ✓     ✓     ·     ·     ✓     ✓
+admit_cards            DELETE a draft                                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+admit_cards            DELETE a published record                               ·     ·     ·     ·     ·     ·     ·     ·
+results                SELECT published                                        ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+results                SELECT expired (opens by URL)                           ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+results                SELECT draft                                            ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+results                SELECT review                                           ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+results                SELECT unpublished                                      ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+results                SELECT archived                                         ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+results                INSERT new draft                                        ·     ·     ·     ✓     ·     ✓     ✓     ✓
+results                INSERT new row already published                        ·     ·     ·     ·     ·     ·     ·     ·
+results                UPDATE edit a draft                                     ·     ·     ·     ✓     ·     ✓     ✓     ✓
+results                UPDATE edit a published record                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+results                UPDATE publish (review → published)                     ·     ·     ·     ✓     ·     ·     ✓     ✓
+results                UPDATE publish skipping review (draft → published)      ·     ·     ·     ·     ·     ·     ·     ·
+results                UPDATE unpublish (published → draft)                    ·     ·     ✓     ✓     ·     ·     ✓     ✓
+results                UPDATE archive (expired → archived)                     ·     ·     ✓     ✓     ·     ·     ✓     ✓
+results                DELETE a draft                                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+results                DELETE a published record                               ·     ·     ·     ·     ·     ·     ·     ·
+answer_keys            SELECT published                                        ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+answer_keys            SELECT expired (opens by URL)                           ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+answer_keys            SELECT draft                                            ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+answer_keys            SELECT review                                           ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+answer_keys            SELECT unpublished                                      ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+answer_keys            SELECT archived                                         ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+answer_keys            INSERT new draft                                        ·     ·     ·     ✓     ·     ✓     ✓     ✓
+answer_keys            INSERT new row already published                        ·     ·     ·     ·     ·     ·     ·     ·
+answer_keys            UPDATE edit a draft                                     ·     ·     ·     ✓     ·     ✓     ✓     ✓
+answer_keys            UPDATE edit a published record                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+answer_keys            UPDATE publish (review → published)                     ·     ·     ·     ✓     ·     ·     ✓     ✓
+answer_keys            UPDATE publish skipping review (draft → published)      ·     ·     ·     ·     ·     ·     ·     ·
+answer_keys            UPDATE unpublish (published → draft)                    ·     ·     ✓     ✓     ·     ·     ✓     ✓
+answer_keys            UPDATE archive (expired → archived)                     ·     ·     ✓     ✓     ·     ·     ✓     ✓
+answer_keys            DELETE a draft                                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+answer_keys            DELETE a published record                               ·     ·     ·     ·     ·     ·     ·     ·
+exam_calendar          SELECT published                                        ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+exam_calendar          SELECT expired (opens by URL)                           ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+exam_calendar          SELECT draft                                            ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+exam_calendar          SELECT review                                           ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+exam_calendar          SELECT unpublished                                      ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+exam_calendar          SELECT archived                                         ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+exam_calendar          INSERT new draft                                        ·     ·     ·     ✓     ·     ✓     ✓     ✓
+exam_calendar          INSERT new row already published                        ·     ·     ·     ·     ·     ·     ·     ·
+exam_calendar          UPDATE edit a draft                                     ·     ·     ·     ✓     ·     ✓     ✓     ✓
+exam_calendar          UPDATE edit a published record                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+exam_calendar          UPDATE publish (review → published)                     ·     ·     ·     ✓     ·     ·     ✓     ✓
+exam_calendar          UPDATE publish skipping review (draft → published)      ·     ·     ·     ·     ·     ·     ·     ·
+exam_calendar          UPDATE unpublish (published → draft)                    ·     ·     ✓     ✓     ·     ·     ✓     ✓
+exam_calendar          UPDATE archive (expired → archived)                     ·     ·     ✓     ✓     ·     ·     ✓     ✓
+exam_calendar          DELETE a draft                                          ·     ·     ·     ✓     ·     ·     ✓     ✓
+exam_calendar          DELETE a published record                               ·     ·     ·     ·     ·     ·     ·     ·
+job_vacancies          SELECT of a published job                               ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+job_vacancies          SELECT of a draft job                                   ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+job_vacancies          INSERT on a draft job                                   ·     ·     ·     ✓     ·     ✓     ✓     ✓
+job_internal           SELECT editorial notes                                  ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+content_internal       SELECT internal notes                                   ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+states                 SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+states                 UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+states                 DELETE unused row                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+districts              SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+districts              UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+districts              DELETE unused row                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+departments            SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+departments            UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+departments            DELETE unused row                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+qualifications         SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+qualifications         UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+qualifications         DELETE unused row                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+categories             SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+categories             UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+categories             DELETE unused row                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+reservation_categories SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+reservation_categories UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+reservation_categories DELETE unused row                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+result_types           SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+result_types           UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+result_types           DELETE unused row                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+answer_key_types       SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+answer_key_types       UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+answer_key_types       DELETE unused row                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+organizations          SELECT all rows                                         ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+organizations          INSERT new organization                                 ·     ·     ·     ✓     ·     ✓     ✓     ✓
+organizations          UPDATE rename                                           ·     ·     ·     ·     ·     ✓     ✓     ✓
+organizations          DELETE unused organization                              ·     ·     ·     ·     ·     ✓     ✓     ✓
+government_sources     SELECT registry                                         ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+government_sources     INSERT new source                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+government_sources     UPDATE change URL                                       ·     ·     ·     ·     ·     ✓     ✓     ✓
+government_sources     DELETE an unused source                                 ·     ·     ·     ·     ·     ✓     ✓     ✓
+government_sources     DELETE a source with history (archive instead)          ·     ·     ·     ·     ·     ·     ·     ·
+ingestion_runs         SELECT runs                                             ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+ingestion_runs         INSERT fake run                                         ·     ·     ·     ·     ·     ·     ·     ·
+source_documents       SELECT documents                                        ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+source_documents       DELETE a document                                       ·     ·     ·     ·     ·     ·     ·     ·
+discovered_items       SELECT review queue                                     ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+discovered_items       INSERT fake discovery                                   ·     ·     ·     ·     ·     ·     ·     ·
+discovered_items       UPDATE review decision                                  ·     ·     ·     ✓     ·     ✓     ✓     ✓
+discovered_items       DELETE a discovery                                      ·     ·     ·     ·     ·     ·     ·     ·
+link_checks            SELECT link history                                     ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+link_checks            INSERT fake check                                       ·     ·     ·     ·     ·     ·     ·     ·
+content_versions       SELECT history                                          ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+content_versions       UPDATE rewrite history                                  ·     ·     ·     ·     ·     ·     ·     ·
+content_versions       DELETE erase history                                    ·     ·     ·     ·     ·     ·     ·     ·
+reference_imports      SELECT LGD provenance                                   ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+reference_imports      INSERT fake import                                      ·     ·     ·     ·     ·     ·     ·     ·
+official_updates       SELECT of a published job                               ✓     ✓     ✓     ✓     ✓     ✓     ✓     ✓
+official_updates       SELECT of a draft job                                   ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+official_updates       INSERT add an update                                    ·     ·     ·     ✓     ·     ✓     ✓     ✓
+official_updates       UPDATE withdraw an update                               ·     ·     ·     ✓     ·     ✓     ✓     ✓
+official_updates       DELETE erase history                                    ·     ·     ·     ·     ·     ·     ·     ·
+field_evidence         SELECT editorial evidence                               ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+field_evidence         INSERT forged evidence                                  ·     ·     ·     ·     ·     ·     ·     ·
+field_verifications    SELECT decisions                                        ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+field_verifications    INSERT verify a discovery field                         ·     ·     ·     ✓     ·     ✓     ✓     ✓
+field_verifications    DELETE erase a decision                                 ·     ·     ·     ·     ·     ·     ·     ·
+rate_limits            SELECT counters                                         ·     ·     ·     ·     ·     ·     ·     ·
+rpc                    UPDATE rate_limit_hit (burn someone's bucket)           ·     ·     ·     ·     ·     ·     ·     ·
+rpc                    DELETE cleanup_operational_data                         ·     ·     ·     ·     ·     ·     ·     ·
+cron_runs              SELECT run history                                      ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+cron_runs              INSERT forged run                                       ·     ·     ·     ·     ·     ·     ·     ·
+source_probes          SELECT probe results                                    ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+source_probes          INSERT forged PASS                                      ·     ·     ·     ·     ·     ·     ·     ·
+source_probes          UPDATE BLOCKED → PASS                                   ·     ·     ·     ·     ·     ·     ·     ·
+source_probes          DELETE erase a probe                                    ·     ·     ·     ·     ·     ·     ·     ·
+editorial_effort       SELECT review timings                                   ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+rpc                    SELECT ops_schema_audit                                 ·     ·     ·     ·     ·     ·     ·     ·
+rpc                    SELECT ops_demo_scan                                    ·     ·     ·     ·     ·     ·     ·     ·
+rpc                    INSERT cron_begin (take the cron lock)                  ·     ·     ·     ·     ·     ·     ·     ·
+admin_users            SELECT other staff                                      ·     ·     ·     ✓     ·     ·     ✓     ✓
+admin_users            INSERT grant a role to a plain user                     ·     ·     ·     ·     ·     ·     ✓     ✓
+admin_users            UPDATE promote the moderator                            ·     ·     ·     ·     ·     ·     ·     ✓
+admin_users            DELETE remove the editor                                ·     ·     ·     ·     ·     ·     ✓     ✓
+role_permissions       SELECT matrix                                           ·     ·     ✓     ✓     ✓     ✓     ✓     ✓
+role_permissions       INSERT self-grant                                       ·     ·     ·     ·     ·     ·     ·     ·
+role_permissions       DELETE revoke                                           ·     ·     ·     ·     ·     ·     ·     ·
+workflow_transitions   INSERT new shortcut                                     ·     ·     ·     ·     ·     ·     ·     ·
+audit_logs             SELECT audit trail                                      ·     ·     ✓     ·     ·     ·     ✓     ✓
+audit_logs             INSERT forged entry                                     ·     ·     ·     ·     ·     ·     ·     ·
+audit_logs             UPDATE rewrite                                          ·     ·     ·     ·     ·     ·     ·     ·
+audit_logs             DELETE erase                                            ·     ·     ·     ·     ·     ·     ·     ·
+rpc                    UPDATE transition_job → published                       ·     ·     ·     ✓     ·     ·     ✓     ✓
+rpc                    UPDATE transition_content(exam) → published             ·     ·     ·     ✓     ·     ·     ✓     ✓
+rpc                    INSERT save_job (new draft)                             ·     ·     ·     ✓     ·     ✓     ✓     ✓
+
+1624/1624 cells match the permission model.

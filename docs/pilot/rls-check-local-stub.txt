@@ -1,0 +1,42 @@
+
+RLS check against 127.0.0.1:54321 — 2026-09-25T08:47:49.978Z
+
+| Who | Action | Expected | Got | Result |
+|---|---|---|---|---|
+| anon | create a job (insert) | denied | error: new row violates row-level security policy for table "jobs" | PASS |
+| anon | create a job (save_job RPC) | denied | error: permission denied for function save_job | PASS |
+| editor | create a draft job | allowed | ok (1 row) | PASS |
+| anon | read a draft | denied | ok (0 rows) | PASS |
+| anon | edit a job | denied | ok (0 rows) | PASS |
+| anon | publish (transition_job) | denied | error: permission denied for function transition_job | PASS |
+| anon | delete a job | denied | ok (0 rows) | PASS |
+| anon | read government sources | denied | error: permission denied for table government_sources | PASS |
+| anon | modify government sources | denied | error: permission denied for table government_sources | PASS |
+| anon | read staff (admin_users) | denied | error: permission denied for table admin_users | PASS |
+| anon | modify staff (grant itself admin) | denied | error: permission denied for table admin_users | PASS |
+| anon | read audit logs | denied | error: permission denied for table audit_logs | PASS |
+| anon | modify audit logs | denied | error: permission denied for table audit_logs | PASS |
+| anon | read review queue | denied | error: permission denied for table discovered_items | PASS |
+| plain user | read staff list | denied | ok (0 rows) | PASS |
+| plain user | grant itself a role | denied | error: Not allowed to manage staff | PASS |
+| plain user | create a job | denied | error: new row violates row-level security policy for table "jobs" | PASS |
+| plain user | read a draft | denied | ok (0 rows) | PASS |
+| plain user | read review queue / sources | denied | ok (0 rows) | PASS |
+| editor | read its draft | allowed | ok (1 row) | PASS |
+| editor | manage sources | denied | error: new row violates row-level security policy for table "government_sourc | PASS |
+| editor | manage staff | denied | error: Not allowed to manage staff | PASS |
+| editor | change its own role | denied | ok (0 rows) | PASS |
+| editor | delete audit logs | denied | error: permission denied for table audit_logs | PASS |
+| editor | read audit logs | denied | ok (0 rows) | PASS |
+| super admin | read staff list | allowed | ok (2 rows) | PASS |
+| super admin | read audit logs | allowed | ok (1 row) | PASS |
+| super admin | move draft to review | allowed | ok (1 row) | PASS |
+| super admin | publish | allowed | ok (1 row) | PASS |
+| anon | read the published job | allowed | ok (1 row) | PASS |
+| anon | edit the published job | denied | ok (0 rows) | PASS |
+| super admin | unpublish (back to draft) | allowed | ok (1 row) | PASS |
+| anon | read it after unpublish | denied | ok (0 rows) | PASS |
+| super admin | archive the test job | allowed | ok (1 row) | PASS |
+| super admin | delete audit logs (append-only even for admins) | denied | error: permission denied for table audit_logs | PASS |
+
+35/35 passed

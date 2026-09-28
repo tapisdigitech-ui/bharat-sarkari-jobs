@@ -1,0 +1,22 @@
+• CHSL discovered: confidence HIGH (0.895); fields {"level":"central","title":"Combined Higher Secondary (10+2) Level Examination, 2026","age_max":27,"age_min":18,"last_date":"2026-10-07","pay_level":"Level 2","source_url":"https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_chsle_2026.pdf","state_slug":"all-india","fee_general":"Rs. 100","salary_text":"Rs. 19,900 – Rs. 63,200","source_name":"Staff Selection Commission — notice board (replay)","source_type":"official_notification","fee_reserved":"Nil (exempted)","organization_id":"9290807d-25c9-4dc8-af97-5ad17
+•   OK   advertisement_no: got "HQ-C1102/5/2026-C-1" · official "HQ-C1102/5/2026-C-1"
+•   OK   application_start_date: got "2026-09-07" · official "2026-09-07"
+•   OK   last_date: got "2026-10-07" · official "2026-10-07"
+•   OK   total_vacancies: got 2536 · official 2536
+•   OK   age_min: got 18 · official 18
+•   OK   age_max: got 27 · official 27
+•   OK   pay_level: got "Level 2" · official "Level 2"
+•   OK   fee_general: got "Rs. 100" · official "Rs. 100"
+•   OK   fee_reserved: got "Nil (exempted)" · official "Nil (exempted)"
+• approved by editor → job ee0a2895-2484-4e11-97d5-29291391e9df (draft)
+• published by admin; anon reads it: last_date 2026-10-07, official source https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_chsle_2026.pdf, source checked yes
+• SIMULATED extension detected as a change on the live record: {"last_date":{"to":"2026-10-14","from":"2026-10-07","important":true}}
+• public record still shows 07.10.2026 before anyone approves
+• applied by admin with a reason → public shows 14.10.2026; versions 1,2 (latest: {"status":{"to":"updated","from":"published"},"last_date":{"to":"2026-10-14","from":"2026-10-07"}}, reason "SSC corrigendum extends the last date (SIMULATED for the replay)", source ingestion); audit rows 5
+• expiry follows the updated date: 10 Oct → still live; 15 Oct → expired (1 job)
+• Steno date corrigendum → review queue as job / LOW; issues: ["This is a corrigendum / addendum / date change — link it to the existing record (Merge or Apply changes); do not publish it as a new notice","No application l
+• JE 2026 (closed 22.09.2026) → publish refused by the database gate: "23514 Cannot publish: the last date (2026-09-22) is in the past. Extend it first, or leave" — kept in review
+• JE addendum linked to JE 2026 via F. No. (HQ-C-3019/1/2026-C-3); proposed changes: [] — title, PDF link and qualification list untouched
+• fields: 9/9 of the checked CHSL fields match the official notice
+• system latency (no human wait): fetch+extract+queue 312 ms · approve 37 ms · publish 9 ms · change detection 77 ms · apply 22 ms · public read 1 ms
+REPLAY OK

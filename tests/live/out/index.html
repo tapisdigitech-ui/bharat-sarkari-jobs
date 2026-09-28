@@ -1,0 +1,26 @@
+<title>BSJ Pilot Probe</title>
+<style>
+  :root { --bg:#f5f6f3; --ink:#1d2320; --muted:#5b665f; --line:#d5dbd6; --accent:#1f6b52; --code:#e9ede9; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#141816; --ink:#e3e8e4; --muted:#9aa69f; --line:#2c3430; --accent:#6cc4a1; --code:#1f2522; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#141816; --ink:#e3e8e4; --muted:#9aa69f; --line:#2c3430; --accent:#6cc4a1; --code:#1f2522; color-scheme:dark; }
+  body { background:var(--bg); color:var(--ink); font:15px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; padding:32px 16px; }
+  main { max-width:680px; margin:0 auto; display:grid; gap:18px; }
+  h1 { font-size:22px; margin:0; text-wrap:balance; }
+  .eyebrow { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  p { margin:0; color:var(--muted); }
+  pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:12px; overflow-x:auto; font:13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color:var(--ink); margin:0; }
+  ul { margin:0; padding-left:20px; color:var(--muted); display:grid; gap:4px; }
+</style>
+<main>
+  <div class="eyebrow">BharatSarkariJobs · Phase 3.5 test tooling</div>
+  <h1>Live-pilot probe bundle</h1>
+  <p>This page only hosts <code>probe.js</code>: the platform's own discovery and extraction modules (text, adapters, field rules, normalisation, robots.txt reader) bundled for a browser. It lets a reviewer run the same code the crawler runs on the exact document an official website serves, and compare the output with the official notice by eye.</p>
+  <ul>
+    <li>Reads only public GET URLs on the page's own origin. No logins, forms, captchas or access-control workarounds.</li>
+    <li>Sees served HTML only; JavaScript-rendered content is invisible to it, exactly as it is to the crawler.</li>
+    <li>PDF text uses pdf.js 6.1.200, the version bundled in the server's PDF reader.</li>
+  </ul>
+  <pre>// on an official site's page, in the browser console
+await new Promise(r =&gt; { const s = document.createElement("script"); s.src = "&lt;this artifact&gt;/probe.js"; s.onload = r; document.head.append(s); });
+await BSJ.listing(location.href, { officialDomain: location.hostname });</pre>
+</main>

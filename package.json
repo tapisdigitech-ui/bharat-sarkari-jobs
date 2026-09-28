@@ -1,0 +1,53 @@
+{
+  "name": "bharat-sarkari-jobs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "gen:sql": "tsx scripts/gen-sql.ts",
+    "db:start": "tests/harness/pg.sh start",
+    "db:reset": "tests/harness/pg.sh reset",
+    "test:db": "tsx --test --test-concurrency=1 tests/rls.test.ts tests/content-engine.test.ts tests/phase3.test.ts tests/rls-matrix.test.ts tests/trust.test.ts tests/verification.test.ts tests/ops.test.ts",
+    "test:unit": "NODE_OPTIONS=--conditions=react-server tsx --test tests/ingestion.test.ts tests/pilot-regressions.test.ts tests/lgd.test.ts tests/architecture.test.ts tests/env.test.ts tests/adapters.test.ts tests/fixture-library.test.ts tests/security.test.ts tests/seo.test.ts",
+    "admin:create": "tsx --env-file-if-exists=.env.local scripts/create-admin.ts",
+    "pilot:probe:build": "node tests/live/build-probe.mjs && node tests/live/build-probe-esm.mjs",
+    "pilot:replay": "NODE_OPTIONS=--conditions=react-server tsx tests/live/replay-pilot.ts",
+    "pilot:drill": "NODE_OPTIONS=--conditions=react-server tsx tests/live/failure-recovery.ts",
+    "rls:check": "tsx scripts/rls-check.ts",
+    "lgd:import": "tsx scripts/import-lgd.ts",
+    "test:contract": "bash tests/harness/with-stub.sh env NODE_OPTIONS=--conditions=react-server tsx --test --test-concurrency=1 tests/data-contract.test.ts tests/pipeline-adapters.test.ts tests/search-quality.test.ts tests/probe.test.ts",
+    "db:migrations": "tsx tests/harness/migration-check.ts",
+    "gen:cron": "tsx scripts/gen-cron.ts",
+    "validate": "tsx scripts/validate.ts"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.1",
+    "next": "^16.3.6",
+    "node-html-parser": "^9.0.4",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "server-only": "^0.0.1",
+    "unpdf": "^1.8.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.2",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "axe-core": "^4.13.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.6",
+    "pg": "^8.23.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}

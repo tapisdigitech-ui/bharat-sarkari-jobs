@@ -1,0 +1,17 @@
+PASS order: unique increasing prefixes — 0001_core_schema.sql → 0002_admin_role.sql → 0003_phase2a_cms.sql → 0004_reference_and_permissions.sql → 0005_reference_data.sql → 0006_content_engine_recruitments_exams.sql → 0007_admit_cards_results_answer_keys.sql → 0008_exam_calendar.sql → 0009_dashboard_stats_2b.sql → 0010_source_registry.sql → 0011_reference_crud.sql → 0012_ingestion.sql → 0013_versions_verification_health.sql → 0014_source_stats.sql → 0015_lgd_provenance.sql → 0016_source_scorecard.sql → 0020_permissions_seed.sql → 0021_privileges_fk_indexes.sql → 0022_source_trust.sql → 0023_adapter_metadata.sql → 0024_verification_evidence_updates.sql → 0025_rate_limits_cron_runs.sql → 0026_ops_diagnostics.sql
+PASS fresh: all migrations apply to an empty database — 23 files
+PASS stepwise: prefix 0001..k then the rest, for every k — 22 upgrade paths
+PASS legacy: Phase 2A data survives the upgrade — UPGRADE OK
+PASS equivalent: upgraded schema == fresh schema — identical
+PASS re-run: permissions seed + hardening are re-runnable — re-runnable: 0002,0009,0015,0016,0020,0021,0022,0023,0024,0025,0026; one-shot (tracked by the migration table): 0001,0003,0004,0005,0006,0007,0008,0010,0011,0012,0013,0014
+PASS audit: RLS enabled on every table
+PASS audit: tables with RLS but no policy (deny-all, reported) — rate_limits
+PASS audit: every SECURITY DEFINER function pins search_path
+PASS audit: functions used by constraints/indexes/defaults pin search_path (restorable with pg_restore)
+PASS audit: every view is security_invoker (RLS applies through views)
+PASS audit: every foreign key has an index
+PASS audit: API roles hold no TRUNCATE/REFERENCES/TRIGGER
+PASS audit: SECURITY DEFINER functions callable by anon are allow-listed — is_staff, current_staff_role, has_permission, can_modify_job, content_is_public
+PASS audit: anon cannot execute any write RPC
+PASS staging seed: refused without bsj.seed_target=staging; idempotent; nothing published — refused=true loaded=true jobs/non-draft/discoveries=2/0/2
+MIGRATIONS: 16/16 checks passed

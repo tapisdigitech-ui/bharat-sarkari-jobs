@@ -1,0 +1,31 @@
+Fixture library run — 24 synthetic + 4 real-notice fixtures, 83 field checks
+synthetic: 63/63 checks pass · real-excerpt (manually verified): 20/20 checks pass
+
+PASS synthetic    normal-job                   12/12  covers: normal notice, age, salary, fee, selection process, vacancy total, apply link
+PASS synthetic    external-advt-number         2/2  covers: external advertisement numbers
+PASS synthetic    multiple-advt-numbers        3/3  covers: multiple advertisement numbers
+PASS synthetic    corrigendum-date-change      4/4  covers: corrigenda
+PASS synthetic    postponement                 3/3  covers: postponements, ambiguous exam dates
+PASS synthetic    addendum-posts               2/2  covers: addenda, multiple vacancies
+PASS synthetic    extension                    2/2  covers: extension, fee-payment vs application deadline
+PASS synthetic    cancellation                 2/2  covers: corrigenda
+PASS synthetic    section-number-not-vacancy   2/2  covers: section numbers read as vacancies, missing vacancy
+PASS synthetic    fee-deadline-first           1/1  covers: fee-payment vs application deadline
+PASS synthetic    missing-fee-rules            4/4  covers: missing fee rules
+PASS synthetic    offline-no-apply-link        1/1  covers: missing application links
+PASS synthetic    ambiguous-exam-date          2/2  covers: ambiguous exam dates
+PASS synthetic    tentative-exam-date          2/2  covers: ambiguous exam dates
+PASS synthetic    category-vacancy-total       1/1  covers: vacancy totals, multiple vacancies
+PASS synthetic    age-min-max-words            2/2  covers: age
+PASS synthetic    salary-level                 1/1  covers: salary
+PASS synthetic    multiple-qualifications      1/1  covers: multiple qualifications
+PASS synthetic    missing-last-date            2/2  covers: missing date
+PASS synthetic    impossible-date              1/1  covers: ambiguous date
+PASS synthetic    html-notice                  7/7  covers: HTML notice
+PASS synthetic    scanned-pdf                  3/3  covers: scanned PDFs
+PASS synthetic    result-notice                2/2  covers: result classification
+PASS synthetic    tender-not-notice            1/1  covers: noise rejection
+PASS real-excerpt ssc-chsl-2026                10/10  covers: fee-payment vs application deadline, external advertisement numbers, section numbers read as vacancies, age, salary, ambiguous exam dates
+PASS real-excerpt ssc-je-2026-head             7/7  covers: fee-payment vs application deadline, external advertisement numbers, vacancy totals, salary
+PASS real-excerpt ssc-steno-2026-corrigendum   1/1  covers: corrigenda, postponements
+PASS real-excerpt ssc-je-2026-addendum         2/2  covers: addenda, multiple qualifications

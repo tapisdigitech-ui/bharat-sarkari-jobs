@@ -1,0 +1,422 @@
+{
+ "target": "REHEARSAL \u2014 local production build + local stand-in, NOT staging",
+ "at": "2026-09-26T08:08:13.636403+00:00",
+ "results": [
+  {
+   "section": "Authentication (browser)",
+   "check": "Editor signs in",
+   "expected": "lands in /admin",
+   "got": "http://localhost:3111/admin",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Session cookies are HttpOnly, SameSite=Lax",
+   "expected": "all",
+   "got": "[('sb-127-auth-token', True, 'Lax', True)]",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "No session token readable from page JavaScript",
+   "expected": "no sb- in document.cookie",
+   "got": "absent",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Sign-in with ?next=<off-site URL> stays on this site",
+   "expected": "lands in /admin on the staging host",
+   "got": "http://localhost:3111/admin",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Forged/tampered session cookie",
+   "expected": "redirected to login",
+   "got": "http://localhost:3111/admin/login?next=%2Fadmin%2Fjobs",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Session gone (expired or cleared)",
+   "expected": "redirected to login",
+   "got": "http://localhost:3111/admin/login?next=%2Fadmin%2Fjobs",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "After sign-out, admin pages redirect to login",
+   "expected": "/admin/login",
+   "got": "http://localhost:3111/admin/login?next=%2Fadmin%2Fjobs",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Back button after sign-out does not show admin data",
+   "expected": "login page",
+   "got": "http://localhost:3111/admin/login",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Wrong password refused",
+   "expected": "error, stays on login",
+   "got": "Incorrect email or password.",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Unknown email refused with the same message",
+   "expected": "identical message",
+   "got": "'Incorrect email or password.' / 'Incorrect email or password.'",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "A signed-in user who is not staff is refused",
+   "expected": "stays on login with an access message",
+   "got": "http://localhost:3111/admin/login 'This account does not have access to the admin area.'",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "\u2026and cannot reach /admin afterwards",
+   "expected": "/admin/login",
+   "got": "http://localhost:3111/admin/login?next=%2Fadmin",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Moderator opens /admin/users",
+   "expected": "refused (forbidden notice)",
+   "got": "http://localhost:3111/admin?notice=forbidden",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Moderator opens /admin/sources/new",
+   "expected": "refused (forbidden notice)",
+   "got": "http://localhost:3111/admin?notice=forbidden",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Moderator opens /admin/jobs/new",
+   "expected": "refused (forbidden notice)",
+   "got": "http://localhost:3111/admin?notice=forbidden",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Moderator opens /admin/audit",
+   "expected": "allowed",
+   "got": "http://localhost:3111/admin/audit",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Role change (editor \u2192 moderator) applies to the open session",
+   "expected": "new-job page open before, refused after",
+   "got": "before=True after-url=http://localhost:3111/admin?notice=forbidden",
+   "status": "PASS"
+  },
+  {
+   "section": "Authentication (browser)",
+   "check": "Disabled staff loses access on the next request",
+   "expected": "redirected to login",
+   "got": "http://localhost:3111/admin/login",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "homepage: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "homepage: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "jobs listing: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "jobs listing: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "search: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "search: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "exams: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "exams: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "results: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "results: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "job detail: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "job detail: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "exam page: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "exam page: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "state page: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "state page: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "department page: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "department page: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "admin dashboard: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "admin dashboard: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "review queue: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "review queue: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "source probe: layout shift",
+   "expected": "CLS < 0.1",
+   "got": "0",
+   "status": "PASS"
+  },
+  {
+   "section": "Performance + accessibility (browser)",
+   "check": "source probe: accessibility (axe WCAG 2 A/AA)",
+   "expected": "0 violations",
+   "got": "none",
+   "status": "PASS"
+  }
+ ],
+ "perf": [
+  {
+   "page": "homepage",
+   "path": "/",
+   "ttfb": 4,
+   "load": 86,
+   "js_kb": 139,
+   "js_files": 9,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "jobs listing",
+   "path": "/jobs",
+   "ttfb": 16,
+   "load": 88,
+   "js_kb": 140,
+   "js_files": 10,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "search",
+   "path": "/search?q=recruitment",
+   "ttfb": 111,
+   "load": 168,
+   "js_kb": 139,
+   "js_files": 9,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "exams",
+   "path": "/exams",
+   "ttfb": 59,
+   "load": 118,
+   "js_kb": 139,
+   "js_files": 9,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "results",
+   "path": "/results",
+   "ttfb": 36,
+   "load": 95,
+   "js_kb": 140,
+   "js_files": 10,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "job detail",
+   "path": "/jobs/cmxpublic-published-job-assistant-recruitment-2026",
+   "ttfb": 35,
+   "load": 115,
+   "js_kb": 139,
+   "js_files": 9,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "exam page",
+   "path": "/exams/cmxpublic-published-exam-exam-2026",
+   "ttfb": 46,
+   "load": 96,
+   "js_kb": 139,
+   "js_files": 9,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "state page",
+   "path": "/state/delhi/jobs",
+   "ttfb": 41,
+   "load": 91,
+   "js_kb": 140,
+   "js_files": 10,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "department page",
+   "path": "/department/ssc",
+   "ttfb": 39,
+   "load": 103,
+   "js_kb": 140,
+   "js_files": 10,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "admin dashboard",
+   "path": "/admin",
+   "ttfb": 84,
+   "load": 154,
+   "js_kb": 141,
+   "js_files": 11,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "review queue",
+   "path": "/admin/review",
+   "ttfb": 29,
+   "load": 80,
+   "js_kb": 141,
+   "js_files": 11,
+   "cls": 0,
+   "axe": []
+  },
+  {
+   "page": "source probe",
+   "path": "/admin/sources/probe",
+   "ttfb": 29,
+   "load": 85,
+   "js_kb": 141,
+   "js_files": 11,
+   "cls": 0,
+   "axe": []
+  }
+ ]
+}

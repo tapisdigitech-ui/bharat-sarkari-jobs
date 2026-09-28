@@ -1,0 +1,363 @@
+{
+  "target": "REHEARSAL — local production build http://localhost:3111, NOT a deployment",
+  "at": "2026-09-26T08:07:38.224Z",
+  "results": [
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "robots.txt blocks everything on staging",
+      "expected": "User-agent: * / Disallow: /",
+      "got": "User-Agent: * Disallow: /",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "sitemap.xml answers",
+      "expected": "200, XML",
+      "got": "200, 35 URLs",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Every sitemap URL is on NEXT_PUBLIC_SITE_URL",
+      "expected": "0 off-host",
+      "got": "0 off-host ",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Sitemap sample (35): every URL answers 200",
+      "expected": "all 200",
+      "got": "all 200",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Sitemap sample: every page is noindex on staging",
+      "expected": "all noindex",
+      "got": "all noindex",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Sitemap sample: canonical points at the page itself",
+      "expected": "self",
+      "got": "self",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "homepage (/): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "jobs listing (/jobs): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "job detail (/jobs/cmxpublic-published-job-assistant-recruitment-2026): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "search (/search?q=recruitment): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "exam page (/exams/cmxpublic-published-exam-exam-2026): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "organization (department) page (/department/ssc): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "state page (/state/delhi/jobs): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "qualification page (/qualification/graduate): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "empty search (/search?q=zzqxv-no-such-thing): noindex on staging",
+      "expected": "noindex",
+      "got": "200, robots=\"noindex, nofollow\" x-robots-tag=\"noindex, nofollow\"",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Admin without a session redirects to the login page",
+      "expected": "30x → /admin/login",
+      "got": "307 → /admin/login?next=%2Fadmin",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Job detail: BreadcrumbList JSON-LD",
+      "expected": "present",
+      "got": "4 items",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Job detail: JobPosting has the required fields",
+      "expected": "title, description, datePosted, validThrough, hiringOrganization, location",
+      "got": "complete",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Job detail: JobPosting validThrough is not in the past",
+      "expected": ">= today",
+      "got": "2026-11-10T23:59:59+05:30",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Expired job: page still answers (historical record)",
+      "expected": "200",
+      "got": "200",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Expired job: no JobPosting",
+      "expected": "none",
+      "got": "none",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Expired job in the sitemap",
+      "expected": "—",
+      "got": "not listed",
+      "status": "INFO"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Draft/review job: not public",
+      "expected": "404",
+      "got": "404",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Draft/review job: not in the sitemap",
+      "expected": "absent",
+      "got": "absent",
+      "status": "PASS"
+    },
+    {
+      "section": "SEO (staging must stay out of search engines)",
+      "check": "Unknown page: HTTP 404 + noindex",
+      "expected": "404, noindex",
+      "got": "404, noindex",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Strict-Transport-Security",
+      "expected": "max-age ≥ 1 year",
+      "got": "max-age=63072000; includeSubDomains",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "X-Content-Type-Options",
+      "expected": "nosniff",
+      "got": "nosniff",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "X-Frame-Options / frame-ancestors",
+      "expected": "SAMEORIGIN or DENY",
+      "got": "SAMEORIGIN",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Referrer-Policy",
+      "expected": "strict-origin-when-cross-origin or stricter",
+      "got": "strict-origin-when-cross-origin",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Permissions-Policy",
+      "expected": "camera/microphone/geolocation off",
+      "got": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Content-Security-Policy",
+      "expected": "—",
+      "got": "not set (documented in docs/SECURITY_REVIEW.md)",
+      "status": "INFO"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Server does not advertise its framework",
+      "expected": "no X-Powered-By",
+      "got": "absent",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Admin page without a session",
+      "expected": "redirect to login, no data",
+      "got": "307 → /admin/login?next=%2Fadmin%2Fsources",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Admin pages are private and uncacheable",
+      "expected": "Cache-Control no-store + X-Robots-Tag noindex",
+      "got": "private, no-store, max-age=0 / noindex, nofollow, noarchive",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Staff-only export without a session",
+      "expected": "not served",
+      "got": "307",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Login page never turns an off-site ?next= into a link, form value or redirect",
+      "expected": "sanitised to /admin (safeNext)",
+      "got": "not used",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Forged server-action call without a session",
+      "expected": "refused (4xx/redirect), no data",
+      "got": "307",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "Reflected XSS: a script tag in the search query is escaped",
+      "expected": "no raw <script>alert(1)",
+      "got": "escaped",
+      "status": "PASS"
+    },
+    {
+      "section": "Security (deployed site)",
+      "check": "SQL metacharacters in search are harmless",
+      "expected": "200, no database error text",
+      "got": "200",
+      "status": "PASS"
+    },
+    {
+      "section": "Cron (deployed)",
+      "check": "No secret → 401",
+      "expected": "401",
+      "got": "401",
+      "status": "PASS"
+    },
+    {
+      "section": "Cron (deployed)",
+      "check": "Wrong secret → 401",
+      "expected": "401",
+      "got": "401",
+      "status": "PASS"
+    },
+    {
+      "section": "Cron (deployed)",
+      "check": "Unknown cron job → 404",
+      "expected": "404",
+      "got": "404",
+      "status": "PASS"
+    },
+    {
+      "section": "Cron (deployed)",
+      "check": "Authorised `expire` run",
+      "expected": "200 {ok:true}",
+      "got": "200 {\"ok\":true,\"expired\":0}",
+      "status": "PASS"
+    },
+    {
+      "section": "Cron (deployed)",
+      "check": "Two simultaneous `cleanup` runs",
+      "expected": "one 200 and one 409 (or both 200 if the first finished before the second began)",
+      "got": "200 + 409",
+      "status": "PASS"
+    },
+    {
+      "section": "Cron (deployed)",
+      "check": "Each authorised run left a finished cron_runs row",
+      "expected": "expire + cleanup rows, finished, ok",
+      "got": "expire:ok, cleanup:ok",
+      "status": "PASS"
+    },
+    {
+      "section": "Cron (deployed)",
+      "check": "Runs started by the Vercel scheduler before this check",
+      "expected": "—",
+      "got": "none yet — check again after the first scheduled time in vercel.json",
+      "status": "INFO"
+    },
+    {
+      "section": "Secrets in the JavaScript the browser downloads",
+      "check": "12 script files (578 KB) scanned for the service key, cron secret, database URL, sb_secret_ keys and service_role JWTs",
+      "expected": "none",
+      "got": "none",
+      "status": "PASS"
+    },
+    {
+      "section": "Secrets in the JavaScript the browser downloads",
+      "check": "Values compared",
+      "expected": "—",
+      "got": "2 configured secret value(s) available to this script",
+      "status": "INFO"
+    },
+    {
+      "section": "Demo isolation (rendered pages)",
+      "check": "36 public pages scanned for DEMO / SYNTHETIC / FAKE / PLACEHOLDER / TEST data / lorem / example / .invalid",
+      "expected": "no hits",
+      "got": "/jobs: \"…shed-job Assistant Recruitment 2026 CMX Synthetic Recruitment Board Location : D…\" | /results: \"…arch Organization All organizations CMX Synthetic Recruitment Board Exam All exa…\" | /admit-card: \"…arch Organization All organizations CMX Synthetic Recruitment Board Exam All exa…\" | /answer-k",
+      "status": "FAIL"
+    },
+    {
+      "section": "Demo isolation (rendered pages)",
+      "check": "No demo banner or demo wording on the homepage",
+      "expected": "absent",
+      "got": "absent",
+      "status": "PASS"
+    },
+    {
+      "section": "Performance (server response, median of 5, measured from this machine)",
+      "check": "Comparison note",
+      "expected": "—",
+      "got": "Phase 3.6 timings were measured on one machine with no network (relative only), so staging timings are not compared with them — they become the staging baseline. Page weight is comparable; a page more than ~1.5× heavier with real data is flagged. Browser metrics (load, CLS, JS KB) come from tests/e2",
+      "status": "INFO"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+node_modules
+.next
+*.tsbuildinfo
+next-env.d.ts
+tests/e2e/shots
+
+# Environment files hold secrets: never commit any of them. Only the template is tracked.
+.env
+.env.*
+!.env.example

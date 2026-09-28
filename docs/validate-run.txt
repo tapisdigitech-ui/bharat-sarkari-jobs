@@ -1,0 +1,20 @@
+═════════════════════════════════════════════════════════════════════════════════════════════════════════════
+LOCAL VALIDATION — local PostgreSQL + Supabase API stand-in (real Supabase validation pending)
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+PASS  lint                                                                               25s  
+PASS  typecheck                                                                           5s  
+PASS  unit                                                                                5s  113 passed, 0 failed
+PASS  database                                                                           16s  75 passed, 0 failed
+PASS  migrations                                                                        117s  MIGRATIONS: 16/16 checks passed
+PASS  data contract (demo vs Supabase adapter, local stand-in)                           11s  35 passed, 0 failed
+PASS  source failure drill                                                                6s  FAILURE DRILL: 14/14 safe
+PASS  build                                                                              14s  no warnings
+PASS  security: no secrets in client bundles                                              1s  PASS no server secrets in client bundles or prerendered output
+PASS  security: production refuses demo data / unsafe config                              6s  demo refused (HTTP 500)
+PASS  browser (admin · Phase 2B · Phase 3 · Phase 3.6 · content safety · SEO · audit)   337s  162/162 checks passed · 291/291 checks passed (Phase 2B) · 101/101 checks passed (Phase 3) · 20/20 checks passed (Phase 3.6) · 7/7 checks passed (content safety) · 9/9 checks passed (SEO safety) · 18/18 checks passed (audit)
+PASS    ↳ public content safety                                                               7/7
+PASS    ↳ SEO safety                                                                          9/9
+PASS    ↳ accessibility + performance audit                                                   18/18
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+PASS — all 14 stages passed
+═════════════════════════════════════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,552 @@
+{
+  "target": "REHEARSAL — local Supabase API stand-in + local PostgreSQL, NOT Supabase",
+  "at": "2026-09-26T08:07:06.016Z",
+  "results": [
+    {
+      "section": "1. Connection",
+      "check": "Auth API reachable (/auth/v1/health)",
+      "expected": "200",
+      "got": "200",
+      "status": "PASS"
+    },
+    {
+      "section": "1. Connection",
+      "check": "REST API reachable with the anon key (states)",
+      "expected": "no error, rows > 0",
+      "got": "36 states",
+      "status": "PASS"
+    },
+    {
+      "section": "1. Connection",
+      "check": "Round-trip time from this machine (one REST read)",
+      "expected": "—",
+      "got": "11 ms",
+      "status": "INFO"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "tables without rls",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "definer functions without search path",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "views not security invoker",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "foreign keys without index",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "api role dangerous grants",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "write functions callable by anon",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "restore unsafe functions",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "SECURITY DEFINER functions anon can execute",
+      "expected": "only the read-only RLS helpers (can_modify_job, content_is_public, current_staff_role, has_permission, is_staff)",
+      "got": "[\"can_modify_job\",\"content_is_public\",\"current_staff_role\",\"has_permission\",\"is_staff\"]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "RLS tables with no policy",
+      "expected": "[\"rate_limits\"] (deny-all by design)",
+      "got": "[\"rate_limits\"]",
+      "status": "PASS"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "PostgreSQL server version",
+      "expected": "—",
+      "got": "16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)",
+      "status": "INFO"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "Extensions",
+      "expected": "—",
+      "got": "{\"citext\":\"public\",\"pg_trgm\":\"public\",\"plpgsql\":\"pg_catalog\",\"pgcrypto\":\"public\"}",
+      "status": "INFO"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "Object counts",
+      "expected": "—",
+      "got": "{\"states\":36,\"tables\":58,\"indexes\":217,\"policies\":127,\"triggers\":88,\"districts\":0,\"functions\":200,\"foreign_keys\":98,\"role_permissions\":222,\"workflow_transitions\":84}",
+      "status": "INFO"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "Applied migrations recorded by the Supabase CLI",
+      "expected": "23 rows",
+      "got": "no supabase_migrations table — applied outside `supabase db push`?",
+      "status": "INFO"
+    },
+    {
+      "section": "2. Database schema (ops_schema_audit)",
+      "check": "Local baseline written",
+      "expected": "—",
+      "got": "docs/staging/local-schema-baseline.json",
+      "status": "INFO"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Staff sign-in with the right password",
+      "expected": "session",
+      "got": "session issued",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Wrong password is refused",
+      "expected": "error",
+      "got": "Invalid login credentials",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Unknown email is refused",
+      "expected": "error",
+      "got": "Invalid login credentials",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Same message for wrong password and unknown email (no account enumeration)",
+      "expected": "identical",
+      "got": "Invalid login credentials / Invalid login credentials",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Access-token lifetime (exp − iat)",
+      "expected": "—",
+      "got": "3600 s",
+      "status": "INFO"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Token edited to role=service_role (signature no longer matches) is refused by the REST API",
+      "expected": "401 / error",
+      "got": "401 JWT invalid or expired",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "alg \"none\" token is refused",
+      "expected": "error",
+      "got": "401 JWT invalid or expired",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Garbage bearer token is refused",
+      "expected": "error",
+      "got": "401",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Plain user edits its own user_metadata to claim super_admin",
+      "expected": "—",
+      "got": "accepted by the Auth server (expected: metadata is user-controlled and must never grant anything)",
+      "status": "INFO"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "A plain user who writes role=super_admin into its own user_metadata is still not staff",
+      "expected": "is_staff() = false, admin_users hidden",
+      "got": "is_staff=false, admin_users rows=0",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Sign-out succeeds",
+      "expected": "no error",
+      "got": "ok",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "After sign-out the refresh token is revoked",
+      "expected": "error",
+      "got": "Invalid Refresh Token: Refresh Token Not Found",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "After sign-out the Auth server rejects the old access token (the app checks every admin request with getUser)",
+      "expected": "error",
+      "got": "Auth session missing!",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "After sign-out, the old access token at the REST API directly",
+      "expected": "—",
+      "got": "still accepted until it expires (stateless JWT; 1 draft rows visible). Bounded by the token lifetime above; the app itself rejects it via getUser.",
+      "status": "INFO"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Disabled staff: the same, still-valid token loses access at once",
+      "expected": "draft visible before; hidden and not editable after",
+      "got": "before 1 row, after 0 row, edit 0 row",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Role change (editor → moderator) applies to the existing token immediately",
+      "expected": "edit allowed before, refused after",
+      "got": "before 1 row, after Not allowed to edit jobs",
+      "status": "PASS"
+    },
+    {
+      "section": "3. Authentication",
+      "check": "Expired access token is refused",
+      "expected": "—",
+      "got": "needs --wait-expiry (waits 3600 s); the app-level expiry redirect is covered by the browser check",
+      "status": "NOT RUN"
+    },
+    {
+      "section": "4. RLS attack (direct API, 8 identities)",
+      "check": "RLS attack matrix: 35 cases × 8 identities",
+      "expected": "every cell matches the permission model",
+      "got": "280/280 match",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "jobs: anon sees every published row",
+      "expected": "0",
+      "got": "0",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "jobs: anon sees no draft/review/archived row",
+      "expected": "0 (queries succeed)",
+      "got": "0",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "recruitments: anon sees every published row",
+      "expected": "0",
+      "got": "0",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "recruitments: anon sees no draft/review/archived row",
+      "expected": "0 (queries succeed)",
+      "got": "0",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "exams: anon sees every published row",
+      "expected": "0",
+      "got": "0",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "exams: anon sees no draft/review/archived row",
+      "expected": "0 (queries succeed)",
+      "got": "0",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "results: anon sees every published row",
+      "expected": "0",
+      "got": "0",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "results: anon sees no draft/review/archived row",
+      "expected": "0 (queries succeed)",
+      "got": "0",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "job_internal: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "content_internal: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "government_sources: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "discovered_items: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "audit_logs: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "admin_users: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "field_evidence: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "source_probes: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "editorial_effort: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "5. Public read (anon)",
+      "check": "cron_runs: nothing readable by anon",
+      "expected": "error or 0 rows",
+      "got": "refused (401)",
+      "status": "PASS"
+    },
+    {
+      "section": "6. Audit log",
+      "check": "An editor's change writes an audit row with the editor as actor",
+      "expected": "1+ row, actor = editor",
+      "got": "1 row(s), actor match: true",
+      "status": "PASS"
+    },
+    {
+      "section": "6. Audit log",
+      "check": "Super admin cannot delete audit rows",
+      "expected": "refused",
+      "got": "refused",
+      "status": "PASS"
+    },
+    {
+      "section": "6. Audit log",
+      "check": "Super admin cannot rewrite audit rows",
+      "expected": "refused",
+      "got": "refused",
+      "status": "PASS"
+    },
+    {
+      "section": "6. Audit log",
+      "check": "Service role and audit rows",
+      "expected": "—",
+      "got": "not attempted: the service role bypasses RLS by design, so append-only is enforced for every API role but not for the key itself — the key never reaches the browser (bundle scan in site.ts)",
+      "status": "INFO"
+    },
+    {
+      "section": "6. Audit log",
+      "check": "Staff role changes made during this run were audited",
+      "expected": "1+ row",
+      "got": "9 row(s)",
+      "status": "PASS"
+    },
+    {
+      "section": "7. Cron single-run lock (database)",
+      "check": "First cron_begin takes the lock",
+      "expected": "a run id",
+      "got": "2",
+      "status": "PASS"
+    },
+    {
+      "section": "7. Cron single-run lock (database)",
+      "check": "Second cron_begin while the first is unfinished is refused",
+      "expected": "null",
+      "got": "null",
+      "status": "PASS"
+    },
+    {
+      "section": "7. Cron single-run lock (database)",
+      "check": "After the first run finishes, the lock is free again",
+      "expected": "a run id",
+      "got": "4",
+      "status": "PASS"
+    },
+    {
+      "section": "7. Cron single-run lock (database)",
+      "check": "Latest cron runs recorded on this project (scheduler evidence)",
+      "expected": "—",
+      "got": "none — the Vercel cron has not run against this database yet",
+      "status": "INFO"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "jobs: live/expired rows whose title or URL looks like demo/synthetic/test/placeholder",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "exams: live/expired rows whose title or URL looks like demo/synthetic/test/placeholder",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "results: live/expired rows whose title or URL looks like demo/synthetic/test/placeholder",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "admit_cards: live/expired rows whose title or URL looks like demo/synthetic/test/placeholder",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "answer_keys: live/expired rows whose title or URL looks like demo/synthetic/test/placeholder",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "recruitments: live/expired rows whose title or URL looks like demo/synthetic/test/placeholder",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "exam_calendar: live/expired rows whose title or URL looks like demo/synthetic/test/placeholder",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "synthetic sources",
+      "expected": "none on staging",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "organizations_marked: live/expired rows whose title or URL looks like demo/synthetic/test/placeholder",
+      "expected": "none",
+      "got": "[]",
+      "status": "PASS"
+    },
+    {
+      "section": "8. Demo isolation (database)",
+      "check": "synthetic discoveries open",
+      "expected": "—",
+      "got": "1",
+      "status": "INFO"
+    },
+    {
+      "section": "9. Human review effort (editorial_effort)",
+      "check": "Real (non-synthetic) discoveries measured",
+      "expected": "—",
+      "got": "{\"discoveries\":0,\"reviewed\":0,\"published\":0,\"median_wait_to_start_min\":null,\"median_review_min\":null,\"median_review_to_publish_min\":null,\"median_corrections\":null,\"median_fields_verified\":null}",
+      "status": "INFO"
+    },
+    {
+      "section": "9. Human review effort (editorial_effort)",
+      "check": "Enough reviewed records for an effort estimate",
+      "expected": "≥ 20",
+      "got": "0",
+      "status": "NOT RUN"
+    },
+    {
+      "section": "10. Server-side source probes",
+      "check": "Official sources registered (not synthetic)",
+      "expected": "—",
+      "got": "0",
+      "status": "INFO"
+    },
+    {
+      "section": "10. Server-side source probes",
+      "check": "Sources probed from a deployment",
+      "expected": "all",
+      "got": "0/0",
+      "status": "FAIL"
+    },
+    {
+      "section": "Cleanup",
+      "check": "Fixtures and throw-away accounts removed",
+      "expected": "nothing left",
+      "got": "jobs left: 0",
+      "status": "PASS"
+    },
+    {
+      "section": "Cleanup",
+      "check": "Kept on purpose",
+      "expected": "—",
+      "got": "audit_logs rows written by this run (append-only) and the cron_runs rows of the lock check",
+      "status": "INFO"
+    }
+  ]
+}

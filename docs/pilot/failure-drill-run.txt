@@ -1,0 +1,12 @@
+SAFE  site unavailable (503 on the listing): run failed, errors 1
+SAFE  timeout: run failed
+SAFE  403 (access restricted): run blocked; source → BLOCKED (not retried automatically)
+SAFE  robots.txt denies a notice: run succeeded, rejected 1
+SAFE  PDF unavailable (404): run partial, errors 1
+SAFE  malformed PDF: run partial: Notice https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/other.pdf: could 
+SAFE  duplicate notice (same notice at a second URL): run succeeded, created 0, unchanged 1; second URL queued as new job: no
+SAFE  changed URL (notice moved, same content): run succeeded, created 0, unchanged 0; queued: [{"review_status":"pending","linked":true}]; log: Changed job: Notice of Combined Higher Secondary (10+2) Level Examination, 2026 
+SAFE  source redesign (listing now has no notice links): run partial: flagged 'may have been redesigned'
+SAFE  notice re-issued with fields missing (must not null anything): run succeeded; proposed changes []; none set a field to empty
+SAFE  expiry cron after all of the above: expired 0 (last date 2026-10-07 is still open)
+FAILURE DRILL: 11/11 safe

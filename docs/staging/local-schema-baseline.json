@@ -1,0 +1,23 @@
+{
+  "note": "ops_schema_audit() counts from a CLEAN local PostgreSQL rehearsal (--write-baseline) — compared by the real staging run. Never written by a plain --rehearsal run or by any --scenario=<name> run (see scripts/staging/common.ts).",
+  "at": "2026-09-28T18:15:59.451Z",
+  "counts": {
+    "states": 36,
+    "tables": 58,
+    "indexes": 217,
+    "policies": 127,
+    "triggers": 88,
+    "districts": 0,
+    "functions": 86,
+    "foreign_keys": 98,
+    "role_permissions": 222,
+    "workflow_transitions": 84
+  },
+  "extensions": {
+    "citext": "public",
+    "pg_trgm": "public",
+    "plpgsql": "pg_catalog",
+    "pgcrypto": "public"
+  },
+  "migrations": 24
+}
